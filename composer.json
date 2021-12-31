@@ -1,0 +1,27 @@
+{
+    "name": "drewdan/code-sentinel",
+    "description": "A logging driver for Laravel to send logs to Code Sentinel",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Drewdan\\CodeSentinel\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andrew Arscott",
+            "email": "andrew@prometheuscomputing.co.uk"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^6.0"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Drewdan\\CodeSentinel\\CodeSentinelServiceProvider"
+            ]
+        }
+    }
+}
