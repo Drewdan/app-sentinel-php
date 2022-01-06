@@ -23,6 +23,7 @@ class LogEntry {
 	public array $context;
 
 	public function __construct(array $data) {
+		$this->user = null;
 		$this->message = $data['message'];
 		$this->type = ucfirst(strtolower($data['level_name']));
 		$this->date = $data['datetime'];
