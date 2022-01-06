@@ -1,5 +1,5 @@
 {
-    "name": "drewdan/code-sentinel",
+    "name": "drewdan/app-sentinel-php",
     "description": "A logging driver for Laravel to send logs to Code Sentinel",
     "type": "library",
     "license": "MIT",
