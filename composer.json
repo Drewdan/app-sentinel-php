@@ -23,5 +23,8 @@
                 "Drewdan\\CodeSentinel\\CodeSentinelServiceProvider"
             ]
         }
-    }
+    },
+  "require": {
+    "ext-json": "*"
+  }
 }

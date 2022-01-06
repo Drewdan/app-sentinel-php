@@ -2,6 +2,7 @@
 
 namespace Drewdan\CodeSentinel\Client;
 
+use Drewdan\CodeSentinel\LogEntry;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\PendingRequest;
 
@@ -22,18 +23,23 @@ class SentinelClient {
 		$this->applicationId = $applicationId;
 		$this->key = $key;
 		$this->uri = $this->ingressUrl . '/api/v1/' . $this->applicationId . '/events';
-		$this->client = Http::withToken($this->key)->asJson()->acceptJson();
+		$this->client = Http::withToken($this->key)->asJson();
 	}
 
-	/**
-	 * @throws \Illuminate\Http\Client\RequestException
-	 */
-	public function postLog(string $name, string $type = 'Info') {
+	public function postLog(LogEntry $logEntry) {
+		$exception = $logEntry->exception ? serialize($logEntry->exception) : null;
+
 		$body = [
-			'name' => $name,
-			'type' => $type,
+			'name' => $logEntry->message,
+			'type' => $logEntry->type,
+			'exception' => $exception,
+			'header_data' => collect(request()->headers),
+			'ip' => request()->ip(),
+			'user' => $logEntry->user,
+			'user_id' => $logEntry->user_id,
+			'context' => $logEntry->context,
 		];
 
-		$this->client->post($this->uri, $body)->throw();
+		$this->client->timeout(10)->post($this->uri, $body);
 	}
 }

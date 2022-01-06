@@ -3,6 +3,7 @@
 namespace Drewdan\CodeSentinel\Handler;
 
 use Monolog\Logger;
+use Illuminate\Support\Str;
 use Drewdan\CodeSentinel\LogEntry;
 use Monolog\Handler\AbstractProcessingHandler;
 use Drewdan\CodeSentinel\Client\SentinelClient;
@@ -20,10 +21,19 @@ class SentinelHandler extends AbstractProcessingHandler {
 
 	/**
 	 * @inheritDoc
+	 * @throws \Illuminate\Http\Client\RequestException
 	 */
 	protected function write(array $record): void {
+		if (Str::startsWith($record['message'], 'Received a payload from client')) {
+			return;
+		}
+
 		$logEntry = new LogEntry($record);
 
-		$this->client->postLog($logEntry->message, $logEntry->type);
+		if (config('sentinel.user.retrieve')) {
+			$logEntry->addUserToLog();
+		}
+
+		$this->client->postLog($logEntry);
 	}
 }
