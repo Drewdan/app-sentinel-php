@@ -5,7 +5,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Drewdan\\CodeSentinel\\": "src"
+            "Drewdan\\AppSentinel\\": "src"
         }
     },
     "authors": [
@@ -20,7 +20,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Drewdan\\CodeSentinel\\CodeSentinelServiceProvider"
+                "Drewdan\\AppSentinel\\AppSentinelServiceProvider"
             ]
         }
     },

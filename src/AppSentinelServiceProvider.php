@@ -1,14 +1,14 @@
 <?php
 
-namespace Drewdan\CodeSentinel;
+namespace Drewdan\AppSentinel;
 
 use Monolog\Logger;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
-use Drewdan\CodeSentinel\Client\SentinelClient;
-use Drewdan\CodeSentinel\Handler\SentinelHandler;
+use Drewdan\AppSentinel\Client\SentinelClient;
+use Drewdan\AppSentinel\Handler\SentinelHandler;
 
-class CodeSentinelServiceProvider extends ServiceProvider {
+class AppSentinelServiceProvider extends ServiceProvider {
 
 	public function register() {
 		$this->mergeConfigFrom(__DIR__ . '/../config/sentinel.php', 'sentinel');

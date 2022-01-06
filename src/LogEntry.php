@@ -1,6 +1,6 @@
 <?php
 
-namespace Drewdan\CodeSentinel;
+namespace Drewdan\AppSentinel;
 
 use Illuminate\Support\Arr;
 
