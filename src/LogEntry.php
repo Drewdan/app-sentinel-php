@@ -27,7 +27,7 @@ class LogEntry {
 		$this->type = ucfirst(strtolower($data['level_name']));
 		$this->date = $data['datetime'];
 		$this->exception = Arr::has($data, 'context.exception') ? $data['context']['exception'] : null;
-		$this->user_id = Arr::has($data, 'context') ? $data['context']['user_id'] : null;
+		$this->user_id = Arr::has($data, 'context.user_id') ? $data['context']['user_id'] : null;
 		$this->context = Arr::has($data, 'context') ? Arr::except($data, 'context.exception') : [];
 	}
 
